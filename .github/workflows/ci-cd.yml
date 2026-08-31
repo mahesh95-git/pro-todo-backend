@@ -1,16 +1,21 @@
 name: Todo backend CI/CD
 
 on:
-    push:
-        branches:
-         - main
+  push:
+    branches:
+      - main
 jobs:
-    docker:
-        runs-on: ubuntu-latest
+  docker:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses : actions/checkout@v4
-            - name: build docker image
-              run: docker build -t todo-backend .
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: build docker image
+        run: docker build -t todo-backend .
 
+      - name: login to ACR
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}

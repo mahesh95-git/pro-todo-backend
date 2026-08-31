@@ -39,10 +39,10 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api", todoRoutes);
 
-// 404 handler - must come after all routes
+
 app.use(notFoundHandler);
 
-// Error handling middleware - must be last
+
 app.use(errorHandler);
 
 export default app;
